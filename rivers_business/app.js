@@ -4,6 +4,11 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
+const authRoutes = require('./routes/auth');
+const indexRoutes = require('./routes/index');
+const adminRoutes = require('./routes/admin');
+const studentRoutes = require('./routes/student');
+
 const app = express();
 
 // Middleware
