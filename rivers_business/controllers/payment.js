@@ -1,4 +1,4 @@
-const Payment = require('../models/Payment');
+const payment = require('../models/payment');
 const axios = require('axios');
 const { PAYSTACK_SECRET_KEY } = process.env;
 
@@ -7,7 +7,7 @@ exports.initiatePayment = async (req, res) => {
     const { studentId, amount } = req.body;
     const transactionId = generateUniqueTransactionId();
 
-    const payment = new Payment({
+    const payment = new payment({
       studentId,
       amount,
       transactionId,
@@ -42,7 +42,7 @@ exports.verifyPayment = async (req, res) => {
       },
     });
 
-    const payment = await Payment.findOne({ transactionId: reference });
+    const payment = await payment.findOne({ transactionId: reference });
 
     if (!payment) {
       return res.status(404).json({ message: 'Payment not found' });
@@ -67,7 +67,7 @@ exports.getPaymentStatus = async (req, res) => {
   try {
     const { transactionId } = req.params;
 
-    const payment = await Payment.findOne({ transactionId });
+    const payment = await payment.findOne({ transactionId });
 
     if (!payment) {
       return res.status(404).json({ message: 'Payment not found' });

@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
 
+
+
 const applicationSchema = new mongoose.Schema({
+
+  // course
+  
+  coursse: {
+      courseTitle: {type: 'string', required: true},
+  },
   // Personal Information
   personalInformation: {
     title: { type: String, required: true },
