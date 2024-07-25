@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const Schema = mongoose.Schema;
+
 
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');
@@ -30,6 +32,9 @@ app.use(session({
   saveUninitialized: true,
   store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/riverStateBusinessSchool' })
 }));
+
+// mongodb schema
+
 
 // View engine
 app.set('view engine', 'ejs');
