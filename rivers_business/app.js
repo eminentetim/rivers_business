@@ -12,7 +12,7 @@ const adminRoutes = require('./routes/admin');
 const studentRoutes = require('./routes/student');
 const applicationRoutes = require('./routes/application');
 const paymentRoutes = require('./routes/payment');
-
+const notificationRoutes = require('./routes/notification');
 const app = express();
 
 // Middleware
@@ -46,6 +46,7 @@ app.use('/admin', require('./routes/admin'));
 app.use('/student', require('./routes/student'));
 app.use('/application', require('./routes/application'));
 app.use('/payment', require('./routes/payment'));
+app.use('/notifications', require('./routes/notification'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
