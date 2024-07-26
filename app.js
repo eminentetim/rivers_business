@@ -14,10 +14,13 @@ const applicationRoutes = require('./routes/application');
 const paymentRoutes = require('./routes/payment');
 const notificationRoutes = require('./routes/notification');
 const app = express();
+const cors = require('cors');
+app.use(cors());
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 // MongoDB connection
 mongoose.connect(`mongodb://localhost:27017/riverStateBusinessSchool`, { 
