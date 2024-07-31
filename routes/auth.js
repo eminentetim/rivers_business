@@ -22,6 +22,10 @@ router.post('/signup', async (req, res) => {
     return res.status(400).send('Passwords do not match');
   }
   try {
+    let existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).send('Email already registered');
+    }
     let user = new User({ email, password, role: 'student' });
     await user.save();
     res.status(201).send('User registered');
@@ -43,6 +47,12 @@ router.post('/login', async (req, res) => {
   } catch (err) {
     res.status(400).send(err.message);
   }
+});
+
+// Logout route
+router.post('/logout', (req, res) => {
+  // On the client side, ust remove the token from storage
+  res.status(200).send('User logged out');
 });
 
 // Forgot password route
@@ -97,6 +107,7 @@ router.post('/reset-password/:token', async (req, res) => {
     res.status(400).send(err.message);
   }
 });
+
 
 module.exports = router;
 
