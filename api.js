@@ -32,11 +32,15 @@ const fetchPaymentData = async () => {
     return response.json();
 };
 
+const fetchTranscriptRequestData = async () => {
+    const response = await fetch(`${API_URL}/transcript-request`);
+    return response.json();
+};
+
 const fetchNotificationsData = async () => {
     const response = await fetch(`${API_URL}/notifications`);
     return response.json();
 };
-
 module.exports = {
     fetchAuthData,
     fetchIndexData,
@@ -44,6 +48,7 @@ module.exports = {
     fetchStudentData,
     fetchApplicationData,
     fetchPaymentData,
+    fetchTranscriptRequestData,
     fetchNotificationsData
 };
 

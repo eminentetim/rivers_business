@@ -13,6 +13,8 @@ const studentRoutes = require('./routes/student');
 const applicationRoutes = require('./routes/application');
 const paymentRoutes = require('./routes/payment');
 const notificationRoutes = require('./routes/notification');
+const transcriptRequestRoutes = require('./routes/transcriptRequest');
+
 const app = express();
 const cors = require('cors');
 app.use(cors());
@@ -51,5 +53,6 @@ app.use('/api/student', studentRoutes);
 app.use('/api/application', applicationRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/transcript-request', transcriptRequestRoutes);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
