@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 
 // Sign-up route
 router.post('/signup', async (req, res) => {
-  const { email, password, confirmPassword } = req.body;
+  const { email, name, password, confirmPassword } = req.body;
   if (password !== confirmPassword) {
     return res.status(400).send('Passwords do not match');
   }
@@ -26,13 +26,14 @@ router.post('/signup', async (req, res) => {
     if (existingUser) {
       return res.status(400).send('Email already registered');
     }
-    let user = new User({ email, password, role: 'student' });
+    let user = new User({ email, name, password, role: 'student' });
     await user.save();
     res.status(201).send('User registered');
   } catch (err) {
     res.status(400).send(err.message);
   }
 });
+
 
 // Login route
 router.post('/login', async (req, res) => {
