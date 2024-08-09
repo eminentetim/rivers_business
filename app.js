@@ -51,7 +51,7 @@ app.use('/api', indexRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/student', studentRoutes);
 app.use('/api/application', applicationRoutes);
-app.use('/api/payment', paymentRoutes);
+app.use('/api/payments', paymentRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/transcript-request', transcriptRequestRoutes);
 const PORT = process.env.PORT || 5000;

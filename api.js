@@ -28,7 +28,7 @@ const fetchApplicationData = async () => {
 };
 
 const fetchPaymentData = async () => {
-    const response = await fetch(`${API_URL}/payment`);
+    const response = await fetch(`${API_URL}/payments`);
     return response.json();
 };
 

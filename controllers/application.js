@@ -69,3 +69,33 @@ exports.deleteApplication = async (req, res) => {
   }
 };
 
+// Upload fuction
+exports.uploadAttachments = async (req, res) => {
+  try {
+    const application = await Application.findById(req.body.applicationId);
+    if (!application) {
+      return res.status(404).send('Application not found');
+    }
+
+    const degreeCertificate = req.files['degreeCertificate'] ? req.files['degreeCertificate'][0].path : '';
+    const curriculumVitae = req.files['curriculumVitae'] ? req.files['curriculumVitae'][0].path : '';
+    const evidenceOfAbilityToPay = req.files['evidenceOfAbilityToPay'] ? req.files['evidenceOfAbilityToPay'][0].path : '';
+    const oLevelResult = req.files['oLevelResult'] ? req.files['oLevelResult'][0].path : '';
+    const nyscExemptionLetter = req.files['nyscExemptionLetter'] ? req.files['nyscExemptionLetter'][0].path : '';
+    const photo = req.files['photo'] ? req.files['photo'][0].path : '';
+    application.attachments = {
+      degreeCertificate,
+      curriculumVitae,
+      evidenceOfAbilityToPay,
+      oLevelResult,
+      nyscExemptionLetter,
+      photo
+    };
+
+    await application.save();
+    res.status(201).send('Files uploaded and application updated successfully');
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+};
+

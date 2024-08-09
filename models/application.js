@@ -7,23 +7,28 @@ const applicationSchema = new mongoose.Schema({
   // course
   
   coursse: {
+      programmeTitle: {type: 'string', required: true},
       courseTitle: {type: 'string', required: true},
   },
   // Personal Information
   personalInformation: {
     title: { type: String, required: true },
-    name: { type: String, required: true },
+    first_name: { type: String, required: true },
+    middle_name: { type: String, required: true },
+    last_name: { type: String, required: true },
+    email:{ type: String, required: true },
     gender: { type: String, required: true },
     maritalStatus: { type: String, required: true },
     birthdate: { type: Date, required: true },
     address: { type: String, required: true },
     religion: { type: String, required: true },
     phone: { type: String, required: true },
+    physical_challange: { type: String, required: true },
+    photo: { type: String, required: true },
   },
-  // Emergency Contact
+  // next of kind
   emergencyContact: {
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
+    name: { type: String, required: true },
     relationship: { type: String, required: true },
     phone: { type: String, required: true },
     email: { type: String, required: true },
