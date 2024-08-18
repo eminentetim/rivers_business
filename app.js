@@ -50,8 +50,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/transcript-request', transcriptRequestRoutes);
 
-// The "catchall" handler: for any request that doesn't match one above,
-// send back the index.html file from the React app
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'my-react-app/dist', 'index.html'));
 });
