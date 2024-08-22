@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const path = require('path');  
-const cors = require('cors');
+const Schema = mongoose.Schema;
+
 
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');
@@ -16,6 +16,7 @@ const notificationRoutes = require('./routes/notification');
 const transcriptRequestRoutes = require('./routes/transcriptRequest');
 
 const app = express();
+const cors = require('cors');
 app.use(cors());
 
 // Middleware
@@ -24,7 +25,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/riverStateBusinessSchool', { 
+
+mongoose.connect(`mongodb://localhost:27017/riverStateBusinessSchool `, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true 
 });
@@ -37,10 +39,14 @@ app.use(session({
   store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/riverStateBusinessSchool' })
 }));
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'my-react-app/dist')));
+// mongodb schema
 
-// API Routes
+
+// View engine
+app.set('view engine', 'ejs');
+
+// Routes
+// Using routes
 app.use('/api/auth', authRoutes);
 app.use('/api', indexRoutes);
 app.use('/api/admin', adminRoutes);
@@ -49,11 +55,5 @@ app.use('/api/application', applicationRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/transcript-request', transcriptRequestRoutes);
-
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'my-react-app/dist', 'index.html'));
-});
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
