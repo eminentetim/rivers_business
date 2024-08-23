@@ -15,14 +15,23 @@ const paymentRoutes = require('./routes/payment');
 const notificationRoutes = require('./routes/notification');
 const transcriptRequestRoutes = require('./routes/transcriptRequest');
 
-const app = express();
+
 const cors = require('cors');
-app.use(cors());
+const app = express();
+// app.use(cors());
+
+app.use(cors({
+  origin: 'https://portal.rsubs.org',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors());
+
+// app.use(cors());
 
 // MongoDB connection
 
