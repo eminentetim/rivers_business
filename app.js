@@ -15,14 +15,12 @@ const paymentRoutes = require('./routes/payment');
 const notificationRoutes = require('./routes/notification');
 const transcriptRequestRoutes = require('./routes/transcriptRequest');
 
-
-const cors = require('cors');
 const app = express();
 
+const cors = require('cors');
+app.use(cors({ origin: 'https://portal.rsubs.org' }));
 
-// app.use(cors({ origin: 'https://portal.rsubs.org' }));
 
-app.use(cors());
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
