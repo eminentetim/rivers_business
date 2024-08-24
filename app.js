@@ -61,9 +61,6 @@ app.use(session({
 app.set('view engine', 'ejs');
 
 // Routes
-app.get('/', (req, res) => {
-  res.redirect('https://portal.rsubs.org');
-});
 // Using routes
 app.use('/api/auth', authRoutes);
 app.use('/api', indexRoutes);
