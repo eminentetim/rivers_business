@@ -3,10 +3,22 @@ const fetch = require('node-fetch');
 const API_URL = 'https://server.rsubs.org/api';
 
 
-const fetchAuthData = async () => {
-    const response = await fetch(`${API_URL}/auth`);
+// const fetchAuthData = async () => {
+//     const response = await fetch(`${API_URL}/auth`);
+//     return response.json();
+// };
+
+const login = async (email, password) => {
+    const response = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+    });
     return response.json();
 };
+
 
 const fetchIndexData = async () => {
     const response = await fetch(`${API_URL}/`);
@@ -43,7 +55,8 @@ const fetchNotificationsData = async () => {
     return response.json();
 };
 module.exports = {
-    fetchAuthData,
+    // fetchAuthData,
+    login,
     fetchIndexData,
     fetchAdminData,
     fetchStudentData,
