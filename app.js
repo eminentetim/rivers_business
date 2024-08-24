@@ -21,7 +21,7 @@ const app = express();
 // app.use(cors());
 
 app.use(cors({
-  origin: 'https://portal.rsubs.org',
+  // origin: 'https://portal.rsubs.org',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -35,17 +35,22 @@ app.use(bodyParser.json());
 
 // MongoDB connection
 
-mongoose.connect(`mongodb://localhost:27017/riverStateBusinessSchool `, { 
+const MONGODB_URI = "mongodb+srv://rsubs-backend:LKZz2r7RwbbPIuOO@stackupnodeii.lcuqocn.mongodb.net/?retryWrites=true&w=majority&appName=StackUpNodeII/";
+mongoose.connect(MONGODB_URI, { 
+  dbName:"riverStateBusinessSchool",
   useNewUrlParser: true, 
   useUnifiedTopology: true 
-});
+}).then(() => console.log(`Connected to MongoDB :: ${MONGODB_URI}`))
+.catch((err) =>
+  console.log(`Error connecting to MongoDB :: ${MONGODB_URI}`)
+);
 
 // Session configuration
 app.use(session({
   secret: 'secret',
   resave: false,
   saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/riverStateBusinessSchool' })
+  store: MongoStore.create({ mongoUrl: MONGODB_URI })
 }));
 
 // mongodb schema
@@ -67,5 +72,5 @@ app.use('/api/application', applicationRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/transcript-request', transcriptRequestRoutes);
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 50001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
