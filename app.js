@@ -18,7 +18,7 @@ const transcriptRequestRoutes = require('./routes/transcriptRequest');
 
 const cors = require('cors');
 const app = express();
-// app.use(cors());
+app.use(cors());
 
 app.use(cors({
   origin: 'https://portal.rsubs.org',
