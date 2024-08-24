@@ -3,19 +3,8 @@ const fetch = require('node-fetch');
 const API_URL = 'https://server.rsubs.org/api';
 
 
-// const fetchAuthData = async () => {
-//     const response = await fetch(`${API_URL}/auth`);
-//     return response.json();
-// };
-
-const login = async (email, password) => {
-    const response = await fetch(`${API_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-    });
+const fetchAuthData = async () => {
+    const response = await fetch(`${API_URL}/auth`);
     return response.json();
 };
 

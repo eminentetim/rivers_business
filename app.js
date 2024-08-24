@@ -20,14 +20,14 @@ const cors = require('cors');
 const app = express();
 
 
-app.use(cors({ origin: 'https://portal.rsubs.org' }));
+// app.use(cors({ origin: 'https://portal.rsubs.org' }));
 
-
+app.use(cors());
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// app.use(cors());
+
 
 // MongoDB connection
 
