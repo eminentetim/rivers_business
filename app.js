@@ -18,7 +18,14 @@ const transcriptRequestRoutes = require('./routes/transcriptRequest');
 const app = express();
 
 const cors = require('cors');
-app.use(cors({ origin: 'https://portal.rsubs.org' }));
+app.use(cors({ origin: 'https://portal.rsubs.org',
+                credentials: true,
+ }));
+
+ app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://portal.rsubs.org');
+  next();
+});
 
 
 // Middleware
