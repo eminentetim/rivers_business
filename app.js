@@ -20,12 +20,7 @@ const cors = require('cors');
 const app = express();
 
 
-app.use(cors({
-  // origin: 'https://portal.rsubs.org',
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  // allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors({ origin: 'https://portal.rsubs.org' }));
 
 
 // Middleware
