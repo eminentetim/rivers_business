@@ -18,9 +18,12 @@ const transcriptRequestRoutes = require('./routes/transcriptRequest');
 const app = express();
 
 const cors = require('cors');
-app.use(cors({ origin: 'https://portal.rsubs.org',
-                credentials: true,
- }));
+
+app.use(cors({
+  origin: 'https://portal.rsubs.org',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
  app.use((req, res, next) => {
   // Set CORS headers
