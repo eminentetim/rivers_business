@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const API_URL = 'https://server.rsubs.org/api';
+const API_URL = 'https://server.rsubs.org:50001/api';
 
 
 const fetchAuthData = async () => {
