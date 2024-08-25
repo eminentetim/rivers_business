@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const API_URL = 'https://server.rsubs.org/api';
+const API_URL = 'https://rivers-business.onrender.com';
 
 
 const fetchAuthData = async () => {
@@ -44,8 +44,8 @@ const fetchNotificationsData = async () => {
     return response.json();
 };
 module.exports = {
-    // fetchAuthData,
-    login,
+    fetchAuthData,
+    // login,
     fetchIndexData,
     fetchAdminData,
     fetchStudentData,
