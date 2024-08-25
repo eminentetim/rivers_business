@@ -21,24 +21,24 @@ const cors = require('cors');
 
 app.use(cors({
   origin: 'https://portal.rsubs.org',
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  // methods: ['GET', 'POST', 'OPTIONS'],
+  // allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
- app.use((req, res, next) => {
-  // Set CORS headers
-  res.header('Access-Control-Allow-Origin', 'https://portal.rsubs.org');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+//  app.use((req, res, next) => {
+//   // Set CORS headers
+//   res.header('Access-Control-Allow-Origin', 'https://portal.rsubs.org');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(204); // No Content
-  }
+//   // Handle preflight requests
+//   if (req.method === 'OPTIONS') {
+//     return res.sendStatus(204); // No Content
+//   }
 
-  // Continue to the next middleware or route handler
-  next();
-});
+//   // Continue to the next middleware or route handler
+//   next();
+// });
 
 
 
