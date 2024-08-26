@@ -5,37 +5,26 @@ const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
 // Student uploads payment receipt
-router.post('/upload', upload.single('receipt'), async (req, res) => {
-  const { studentId, amount, bankName } = req.body;
-  const receiptUrl = req.file.path; // Assume the receipt is stored at this path
+router.post('/payments', upload.single('receipt'), async (req, res) => {
+    try {
+        const { fullName, email, phoneNumber, courseStudy, paymentFor, amount } = req.body;
+        const receipt = req.file.path;
 
-  try {
-    const payment = new Payment({ studentId, amount, bankName, receiptUrl });
-    await payment.save();
-    res.status(201).send('Receipt uploaded successfully');
-  } catch (err) {
-    res.status(400).send(err.message);
-  }
-});
+        const newPayment = new StudentPayment({
+            fullName,
+            email,
+            phoneNumber,
+            courseStudy,
+            paymentFor,
+            amount,
+            receipt
+        });
 
-// Admin verifies payment
-router.post('/verify/:paymentId', async (req, res) => {
-  const { paymentId } = req.params;
-  const { status } = req.body;
-
-  try {
-    const payment = await Payment.findById(paymentId);
-    if (!payment) {
-      return res.status(404).send('Payment not found');
+        await newPayment.save();
+        res.status(201).json({ message: 'Payment details submitted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error submitting payment details', error });
     }
-
-    payment.status = status;
-    await payment.save();
-    res.status(200).send('Payment status updated');
-  } catch (err) {
-    res.status(400).send(err.message);
-  }
 });
-
 module.exports = router;
 
