@@ -11,7 +11,7 @@ const indexRoutes = require('./routes/index');
 const adminRoutes = require('./routes/admin');
 const studentRoutes = require('./routes/student');
 const applicationRoutes = require('./routes/application');
-const paymentRoutes = require('./routes/payment');
+const studentPaymentRoutes = require('./routes/payment');
 const notificationRoutes = require('./routes/notification');
 const transcriptRequestRoutes = require('./routes/transcriptRequest');
 
@@ -81,7 +81,7 @@ app.use('/api', indexRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/student', studentRoutes);
 app.use('/api/application', applicationRoutes);
-app.use('/api/payments', paymentRoutes);
+app.use('/api/student-payment', studentPaymentRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/transcript-request', transcriptRequestRoutes);
 const PORT = process.env.PORT || 50001;

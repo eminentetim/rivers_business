@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
 
 const paymentSchema = new mongoose.Schema({
-  studentId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  studentName: { type: String, required: true },
+  email: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
+  course: { type: String, required: true },
+  paymentFor: { type: String, required: true },
   amount: { type: Number, required: true },
-  bankName: { type: String, required: true },
-  acountNumber: { type: Number, required: true },
-  receiptUrl: { type: String, required: true },
-  status: { type: String, enum: ['Pending', 'Verified', 'Rejected'], default: 'Pending' },
-  createdAt: { type: Date, default: Date.now }
+  receiptUrl: { type: String },
+  reference: { type: String, required: true },
+  status: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('Payment', paymentSchema);
-
