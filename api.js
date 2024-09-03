@@ -30,7 +30,7 @@ const fetchApplicationData = async () => {
 };
 
 const fetchPaymentData = async () => {
-    const response = await fetch(`${API_URL}/payment`);
+    const response = await fetch(`${API_URL}/student-payment`);
     return response.json();
 };
 
