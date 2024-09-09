@@ -122,7 +122,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // get all user 
-router.get('/', async (req, res) => {
+router.get('/users', async (req, res) => {
   try {
     const users = await User.find();
     res.json(users);
