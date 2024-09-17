@@ -26,7 +26,7 @@ router.post('/signup', async (req, res) => {
     if (existingUser) {
       return res.status(400).send('Email already registered');
     }
-    let user = new User({ email, name, password, role: 'admin' });
+    let user = new User({ email, name, password, role: 'student' });
     await user.save();
     res.status(201).send('User registered');
   } catch (err) {
